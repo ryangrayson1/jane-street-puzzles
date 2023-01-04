@@ -1,4 +1,3 @@
-from math import gcd
 from functools import cache
 
 def order(a, b, c, d):
