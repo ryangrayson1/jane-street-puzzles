@@ -22,19 +22,23 @@ def fp(a, b, c, d):
     print(0, 0, 0, 0)
 
 def max_squares(n):
-    mx, cur_best = 1, set()
+    mx = 1
+    best = set()
     for b in range(1, n+1):
         for c in range(b+1, n+1):
             for d in range(c+1, n+1):
                 t = (0, b, c, d)
                 squares = f(*t)
                 if squares == mx:
-                    cur_best.add(t)
+                    best.add(t)
                 if squares > mx:
-                    mx, s = squares, {t}
+                    mx = squares
+                    best.clear()
+                    best.add(t)
+
     min_sum = float('inf')
     ans = None
-    for t in s:
+    for t in sorted(best):
         if sum(t) < min_sum:
             min_sum = sum(t)
             ans = t
